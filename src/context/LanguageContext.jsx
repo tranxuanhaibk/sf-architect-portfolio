@@ -39,7 +39,7 @@ const translations = {
     specArchDesc: 'Consulting on Large Data Volumes (LDV), designing strict enterprise sharing models, and optimizing org-wide structures to prevent data skew.',
     specCodingTitle: 'Deep System Coding',
     specCodingDesc: 'Developing high-performance logic in Apex Callouts, robust Trigger frameworks, and highly custom LWC dynamic interfaces.',
-    specCloudTitle: 'Fullstack & AWS Integration',
+    specCloudTitle: 'Fullstack & Salesforce Integration',
     specCloudDesc: 'Building secure REST/SOAP connections, signing requests with AWS Signature v4 natively in Apex, and scaling Rails backends.',
 
     // Experience Tab
@@ -54,9 +54,9 @@ const translations = {
       {
         id: 1,
         role: "Senior Salesforce Developer",
-        company: "CAPGEMINI SERVICE",
+        company: "Capgemini Services",
         duration: "Jan 2024 – Present",
-        location: "Viet Nam",
+        location: "Singapore",
         color: "purple",
         summary: "Leading the development and technical implementation of large-scale enterprise solutions, ensuring platform health and core scalability across multi-cloud environments.",
         bullets: [
@@ -70,9 +70,9 @@ const translations = {
       {
         id: 2,
         role: "Senior Salesforce Developer - Freelancer",
-        company: "VIET STAFFING SERVICES",
+        company: "Viet Staffing Services",
         duration: "Jan 2026 – May 2026",
-        location: "Viet Nam",
+        location: "Ireland",
         color: "cyan",
         summary: "Delivered rapid, high-impact consulting services, specialized in deep programmatic customization and complex business logic fulfillment.",
         bullets: [
@@ -86,7 +86,7 @@ const translations = {
       {
         id: 3,
         role: "Senior Salesforce Developer - Freelancer",
-        company: "HYBRID TECHNOLOGIES",
+        company: "Hybrid Technologies",
         duration: "Jan 2026 – March 2026",
         location: "Viet Nam",
         color: "pink",
@@ -102,7 +102,7 @@ const translations = {
       {
         id: 4,
         role: "Senior Salesforce Developer - Freelancer",
-        company: "LIGHTNING FORCE SOLUTION",
+        company: "Lightning Force Solution",
         duration: "April 2025 – June 2025",
         location: "Viet Nam",
         color: "cyan",
@@ -118,7 +118,7 @@ const translations = {
       {
         id: 5,
         role: "Lead/Senior Salesforce Developer - Freelancer",
-        company: "VIETNAM BLOCKCHAIN ASSOCIATION",
+        company: "Vietnam Blockchain Association",
         duration: "Aug 2024 – April 2025",
         location: "Viet Nam",
         color: "purple",
@@ -134,7 +134,7 @@ const translations = {
       {
         id: 6,
         role: "Middle Salesforce Developer - Freelancer",
-        company: "KIRKENDALL DWYER",
+        company: "Kirkendall Dwyer",
         duration: "Dec 2023 – Dec 2024",
         location: "USA",
         color: "emerald",
@@ -150,9 +150,9 @@ const translations = {
       {
         id: 7,
         role: "Fresher/Junior Salesforce Developer",
-        company: "CMC GLOBAL",
+        company: "CMC Global",
         duration: "Nov 2021 – Dec 2023",
-        location: "Viet Nam",
+        location: "Japan",
         color: "emerald",
         summary: "Built a rock-solid foundation in core Salesforce development, participating in multi-client project deliveries while mastering programmatic fundamentals.",
         bullets: [
@@ -453,7 +453,7 @@ const emailSchema = [
     specArchDesc: 'Tư vấn mô hình dữ liệu quy mô lớn (LDV), thiết kế cấu trúc bảo mật phân quyền nghiêm ngặt (Sharing Rules), và tối ưu hóa hệ thống tổng thể tránh hiện tượng Data Skew.',
     specCodingTitle: 'Lập Trình Chuyên Sâu',
     specCodingDesc: 'Phát triển logic nghiệp vụ tối ưu trong Apex Callouts, Trigger framework bền vững và các component giao diện tùy biến cực mạnh bằng LWC.',
-    specCloudTitle: 'Tích Hợp AWS & Cloud',
+    specCloudTitle: 'Tích Hợp Salesforce & Cloud',
     specCloudDesc: 'Tích hợp hệ thống bên ngoài bảo mật cao, kết nối trực tiếp AWS (S3, Lambda, DynamoDB) sử dụng chữ ký AWS Signature v4 và lập trình Rails.',
 
     // Experience Tab
@@ -468,9 +468,9 @@ const emailSchema = [
       {
         id: 1,
         role: "Senior Salesforce Developer",
-        company: "CAPGEMINI SERVICE",
+        company: "Capgemini Services",
         duration: "Tháng 1 2024 – Hiện tại",
-        location: "Việt Nam",
+        location: "Singapore",
         color: "purple",
         summary: "Dẫn dắt phát triển và triển khai kỹ thuật các giải pháp doanh nghiệp quy mô lớn, bảo đảm sức khỏe hệ thống và khả năng mở rộng trên môi trường Multi-Cloud.",
         bullets: [
@@ -484,7 +484,7 @@ const emailSchema = [
       {
         id: 2,
         role: "Senior Salesforce Developer - Freelancer",
-        company: "VIET STAFFING SERVICES",
+        company: "Viet Staffing Services",
         duration: "Tháng 1 2026 – Tháng 5 2026",
         location: "Việt Nam",
         color: "cyan",
@@ -500,9 +500,9 @@ const emailSchema = [
       {
         id: 3,
         role: "Senior Salesforce Developer - Freelancer",
-        company: "HYBRID TECHNOLOGIES",
+        company: "Hybrid Technologies",
         duration: "Tháng 1 2026 – Tháng 3 2026",
-        location: "Việt Nam",
+        location: "Nhật Bản",
         color: "pink",
         summary: "Tham gia vào các sáng kiến tái cấu trúc chuyên sâu và nâng cao hiệu năng frontend cốt lõi trong mô hình sprint Agile tốc độ cao.",
         bullets: [
@@ -516,9 +516,9 @@ const emailSchema = [
       {
         id: 4,
         role: "Senior Salesforce Developer - Freelancer",
-        company: "LIGHTNING FORCE SOLUTION",
+        company: "Lightning Force Solution",
         duration: "Tháng 4 2025 – Tháng 6 2025",
-        location: "Việt Nam",
+        location: "Ireland",
         color: "cyan",
         summary: "Thiết kế và triển khai các cấu trúc dữ liệu đặc thù và các luồng tích hợp tinh vi được tinh chỉnh cho các hoạt động liên phòng ban.",
         bullets: [
@@ -532,7 +532,7 @@ const emailSchema = [
       {
         id: 5,
         role: "Lead/Senior Salesforce Developer - Freelancer",
-        company: "VIETNAM BLOCKCHAIN ASSOCIATION",
+        company: "Vietnam Blockchain Association",
         duration: "Tháng 8 2024 – Tháng 4 2025",
         location: "Việt Nam",
         color: "purple",
@@ -548,9 +548,9 @@ const emailSchema = [
       {
         id: 6,
         role: "Middle Salesforce Developer - Freelancer",
-        company: "KIRKENDALL DWYER",
+        company: "Kirkendall Dwyer",
         duration: "Tháng 12 2023 – Tháng 12 2024",
-        location: "MỸ",
+        location: "Hoa kỳ",
         color: "emerald",
         summary: "Quản lý cấu hình, tùy biến và vận hành CRM hàng ngày cho các nhánh triển khai Sales và Service Cloud có trụ sở tại Mỹ từ xa.",
         bullets: [
@@ -564,9 +564,9 @@ const emailSchema = [
       {
         id: 7,
         role: "Fresher/Junior Salesforce Developer",
-        company: "CMC GLOBAL",
+        company: "CMC Global",
         duration: "Tháng 11 2021 – Tháng 12 2023",
-        location: "Việt Nam",
+        location: "Nhật Bản",
         color: "emerald",
         summary: "Xây dựng nền tảng vững chắc về phát triển Salesforce cốt lõi, tham gia bàn giao dự án cho nhiều khách hàng và làm chủ các kiến thức lập trình cơ bản.",
         bullets: [

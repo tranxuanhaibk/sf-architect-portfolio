@@ -178,7 +178,7 @@ const About = ({ setActiveTab }) => {
         <GlowCard glowColor="cyan" delay={0.3} className="flex flex-col items-center justify-center text-center p-8 border border-white/5">
           <Code2 className="text-cyber-cyan mb-3" size={36} />
           <h3 className="text-4xl md:text-5xl font-display font-extrabold text-white text-glow-cyan">
-            <AnimatedCounter end={4} suffix="+" />
+            <AnimatedCounter end={10} suffix="+" />
           </h3>
           <p className="text-gray-400 mt-2 text-sm font-semibold tracking-wide uppercase">
             {t.statsCerts || 'Chứng Chỉ Salesforce Cao Cấp'}
@@ -249,15 +249,15 @@ const About = ({ setActiveTab }) => {
               <Cloud size={20} />
             </div>
             <h3 className="text-lg font-bold text-white mb-2 font-display">
-              {t.specCloudTitle || 'Fullstack & AWS Integration'}
+              {t.specCloudTitle || 'Fullstack & Salesforce Integration'}
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed">
               {t.specCloudDesc}
             </p>
             <ul className="text-xs text-cyber-cyan font-mono mt-4 space-y-1">
-              <li>• AWS Signature Version 4 signing</li>
+              <li>• Salesforce Integration and Configuration</li>
               <li>• REST/SOAP Integrations & JWT</li>
-              <li>• Ruby on Rails Fullstack Development</li>
+              <li>• Salesforce Fullstack Development</li>
             </ul>
           </GlowCard>
 
