@@ -62,11 +62,15 @@ const About = ({ setActiveTab }) => {
             <Cpu size={14} /> {t.heroBadge || 'Fullstack Salesforce Architect'}
           </motion.div>
 
+          <div className="w-50 h-50 rounded-full border-2 border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.4)] overflow-hidden mb-4">
+            <img src="/myAvatar.jpeg" alt="Hai Tran Xuan" className="w-full h-full object-cover" />
+          </div>
+
           <motion.h1 
             variants={itemVariants} 
             className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight"
           >
-            {t.heroGreeting || 'Tôi là'} <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-nebula-purple font-display text-glow-cyan">Trần Xuân Hải</span>
+            {t.heroGreeting || 'Tôi là'} <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-nebula-purple font-display text-glow-cyan">{t.heraFullName || 'Trần Xuân Hải'}</span>
           </motion.h1>
 
           <motion.p 
@@ -121,31 +125,31 @@ const About = ({ setActiveTab }) => {
             </motion.g>
 
             {/* Sub-node 1: Apex & LWC */}
-            <line x1="200" y1="200" x2="80" y2="120" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
+            <line x1="  00" y1="200" x2="80" y2="120" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
             <motion.g custom={1} variants={nodeVariants} animate="animate">
               <circle cx="80" cy="120" r="32" fill="#0d0d15" stroke="#00f2fe" strokeWidth="1.5" className="filter drop-shadow-[0_0_15px_rgba(0,242,254,0.3)]" />
-              <text x="80" y="124" textAnchor="middle" fill="#00f2fe" fontSize="10" fontWeight="bold">APEX / LWC</text>
+              <text x="80" y="124" textAnchor="middle" fill="#00f2fe" fontSize="10" fontWeight="bold">Apex / Lwc / API / Flow</text>
             </motion.g>
 
             {/* Sub-node 2: Cloud Architect */}
             <line x1="200" y1="200" x2="320" y2="130" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
             <motion.g custom={2} variants={nodeVariants} animate="animate">
               <circle cx="320" cy="130" r="32" fill="#0d0d15" stroke="#8a2be2" strokeWidth="1.5" className="filter drop-shadow-[0_0_15px_rgba(138,43,226,0.3)]" />
-              <text x="320" y="134" textAnchor="middle" fill="#e066ff" fontSize="10" fontWeight="bold">ARCHITECT</text>
+              <text x="320" y="134" textAnchor="middle" fill="#e066ff" fontSize="10" fontWeight="bold">Salesforce Architect</text>
             </motion.g>
 
             {/* Sub-node 3: AWS Integration */}
             <line x1="200" y1="200" x2="130" y2="300" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
             <motion.g custom={3} variants={nodeVariants} animate="animate">
               <circle cx="130" cy="300" r="28" fill="#0d0d15" stroke="#ec4899" strokeWidth="1.5" className="filter drop-shadow-[0_0_15px_rgba(236,72,153,0.3)]" />
-              <text x="130" y="304" textAnchor="middle" fill="#ec4899" fontSize="9" fontWeight="bold">AWS / API</text>
+              <text x="130" y="304" textAnchor="middle" fill="#ec4899" fontSize="9" fontWeight="bold">Sales / Service Cloud</text>
             </motion.g>
 
             {/* Sub-node 4: Ruby on Rails */}
             <line x1="200" y1="200" x2="270" y2="290" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
             <motion.g custom={4} variants={nodeVariants} animate="animate">
               <circle cx="270" cy="290" r="24" fill="#0d0d15" stroke="#4facfe" strokeWidth="1.5" className="filter drop-shadow-[0_0_10px_rgba(79,172,254,0.3)]" />
-              <text x="270" y="294" textAnchor="middle" fill="#4facfe" fontSize="8" fontWeight="bold">RUBY / ROR</text>
+              <text x="270" y="294" textAnchor="middle" fill="#4facfe" fontSize="8" fontWeight="bold">Experience Cloud</text>
             </motion.g>
 
             {/* Gradients definitions */}

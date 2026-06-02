@@ -31,7 +31,7 @@ const Footer = () => {
               <Phone size={14} /> +84 (0) 865 787 769
             </a>
             <div className="flex items-center gap-2 text-gray-400">
-              <MapPin size={14} /> {t.location || 'Ho Chi Minh City, Vietnam'}
+              <MapPin size={14} /> {t.location || 'Da Nang City, Viet Nam'}
             </div>
           </div>
         </div>

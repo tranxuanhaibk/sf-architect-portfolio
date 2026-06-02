@@ -19,11 +19,12 @@ const translations = {
     footerDownloadResume: 'Download Resume PDF (EN)',
     footerResumeAlert: 'Resume PDF is being generated. Demo download is ready in the official release.',
     footerCopyright: 'Tran Xuan Hai. All rights reserved. Architected with React, Tailwind CSS v4 & Framer Motion.',
-    location: 'Ho Chi Minh City, Vietnam',
+    location: 'Da Nang City, Viet Nam',
 
     // About / Hero Tab
     heroBadge: 'Fullstack Salesforce Architect',
     heroGreeting: 'I am',
+    heraFullName: 'Hai, Tran Xuan',
     heroTagline: 'Architecting Scalable Salesforce Ecosystems. Bridging Code and Cloud Architecture.',
     heroBio: 'With 6 years of hands-on experience, I specialize in architectural consulting, enterprise Salesforce deployments, and cloud integrations. I combine system architectural thinking (Data & System Architect) with deep coding capabilities (Apex, LWC, AWS/External API integrations) to build highly scalable cloud ecosystems for global clients.',
     btnViewExp: 'View Experience',
@@ -437,6 +438,7 @@ const emailSchema = [
     // About / Hero Tab
     heroBadge: 'Fullstack Salesforce Architect',
     heroGreeting: 'Tôi là',
+    heraFullName: 'Trần Xuân Hải',
     heroTagline: 'Architecting Scalable Salesforce Ecosystems. Bridging Code and Cloud Architecture.',
     heroBio: 'Với 6 năm kinh nghiệm thực chiến, tôi chuyên tư vấn kiến trúc, triển khai hệ thống Salesforce toàn diện và tích hợp điện toán đám mây Cloud. Tôi kết hợp nhuần nhuyễn giữa tư duy Kiến trúc dữ liệu (Data Architect) và năng lực Lập trình chuyên sâu (Apex, LWC, AWS/External API integrations) để xây dựng các giải pháp có khả năng mở rộng vượt trội cho các đối tác quốc tế.',
     btnViewExp: 'Xem Kinh Nghiệm',
