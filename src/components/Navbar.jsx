@@ -1,13 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { User, Briefcase, Award, BookOpen } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+// Import component Switcher độc lập (vì cùng nằm trong folder components nên dùng './')
+import { LanguageSwitcher } from './LanguageSwitcher'; 
 
 const Navbar = ({ activeTab, setActiveTab }) => {
+  const { language, translations } = useLanguage();
+  const t = translations && translations[language] ? translations[language] : {};
+
   const navItems = [
-    { id: 'about', label: 'Về Tôi', icon: User },
-    { id: 'experience', label: 'Kinh Nghiệm', icon: Briefcase },
-    { id: 'certificates', label: 'Chứng Chỉ', icon: Award },
-    { id: 'blog', label: 'Insights', icon: BookOpen },
+    { id: 'about', label: t.navAbout || 'Về Tôi', icon: User },
+    { id: 'experience', label: t.navExperience || 'Kinh Nghiệm', icon: Briefcase },
+    { id: 'certificates', label: t.navCertificates || 'Chứng Chỉ', icon: Award },
+    { id: 'blog', label: t.navBlog || 'Insights', icon: BookOpen },
   ];
 
   return (
@@ -39,11 +45,10 @@ const Navbar = ({ activeTab, setActiveTab }) => {
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`relative px-3.5 py-1.5 rounded-full flex items-center gap-2 text-xs md:text-sm font-medium transition-colors duration-300 cursor-pointer ${
+                className={`relative px-2 md:px-3.5 py-1.5 rounded-full flex items-center gap-1.5 md:gap-2 text-xs md:text-sm font-medium transition-colors duration-300 cursor-pointer ${
                   isActive ? 'text-space-black font-semibold' : 'text-gray-400 hover:text-white'
                 }`}
               >
-                {/* Active Indicator Bubble (Sliding background) */}
                 {isActive && (
                   <motion.div
                     layoutId="activeTabBubble"
@@ -51,25 +56,28 @@ const Navbar = ({ activeTab, setActiveTab }) => {
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
-                <Icon size={16} />
-                <span className="hidden md:inline-block">{item.label}</span>
+                <Icon size={14} className="md:w-4 md:h-4" />
+                <span className="hidden sm:inline-block">{item.label}</span>
               </button>
             );
           })}
         </nav>
 
-        {/* Social / Contact Icons */}
+        {/* Social / Contact Icons & Language Switcher */}
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
-          className="flex items-center gap-3"
+          className="flex items-center gap-1.5 md:gap-3"
         >
+          {/* Gọi component LanguageSwitcher đã tách rời ở đây */}
+          <LanguageSwitcher />
+
           <a
             href="https://linkedin.com/in/tranxuanhai"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300 p-1.5 rounded-lg hover:bg-white/5"
+            className="hidden xs:inline-flex text-gray-400 hover:text-cyber-cyan hover:scale-110 transition-all duration-300 p-1.5 rounded-lg hover:bg-white/5"
             aria-label="LinkedIn"
           >
             <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -78,8 +86,9 @@ const Navbar = ({ activeTab, setActiveTab }) => {
               <circle cx="4" cy="4" r="2" />
             </svg>
           </a>
+          
           <a
-            href="https://github.com/tranxuanhai"
+            href="https://github.com/tranxuanhaibk"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-400 hover:text-nebula-purple hover:scale-110 transition-all duration-300 p-1.5 rounded-lg hover:bg-white/5"
@@ -90,11 +99,12 @@ const Navbar = ({ activeTab, setActiveTab }) => {
               <path d="M9 18c-4.51 2-5-2-7-2" />
             </svg>
           </a>
+          
           <a
-            href="mailto:tranxuanhai@outlook.com"
+            href="mailto:tranxuanhai.bkdn@gmail.com"
             className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-1.5 rounded-full bg-white/5 border border-white/10 hover:border-cyber-cyan/50 hover:bg-cyber-cyan/10 transition-all duration-300 text-white cursor-pointer hover:shadow-[0_0_15px_rgba(0,242,254,0.1)]"
           >
-            Liên hệ
+            {t.navContact || 'Liên hệ'}
           </a>
         </motion.div>
 
