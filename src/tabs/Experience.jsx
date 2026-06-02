@@ -1,63 +1,30 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, Building2, MapPin, CheckCircle2, ChevronRight, Award } from 'lucide-react';
+import { Calendar, Building2, MapPin, CheckCircle2, Award } from 'lucide-react';
 import GlowCard from '../components/GlowCard';
+import { useLanguage } from '../context/LanguageContext';
 
 const Experience = () => {
   const [selectedExpId, setSelectedExpId] = useState(1);
 
-  const experiences = [
-    {
-      id: 1,
-      role: 'Salesforce Architect / Developer',
-      company: 'Capgemini Singapore',
-      duration: '2023 - Hiện tại',
-      location: 'Singapore (Remote / Hybrid)',
-      color: 'purple',
-      summary: 'Tập trung tư vấn kiến trúc, triển khai hệ thống Salesforce toàn diện quy mô lớn cho các tập đoàn đa quốc gia.',
-      bullets: [
-        'Tư vấn thiết kế kiến trúc hệ thống Salesforce (Multi-org Strategy) đảm bảo tính sẵn sàng cao và khả năng phục hồi dữ liệu.',
-        'Thiết kế mô hình bảo mật cấp doanh nghiệp (Enterprise Security Sharing Rules), phân chia nhóm quyền phức tạp.',
-        'Tối ưu hóa các tiến trình xử lý bất đồng bộ Apex (Batch, Queueable, Future) giảm 50% thời gian xử lý giao dịch.',
-        'Hợp tác chặt chẽ với các Product Owners quốc tế để chuyển hóa yêu cầu nghiệp vụ phức tạp thành kiến trúc kỹ thuật tối giản.'
-      ],
-      skills: ['Salesforce Architecture', 'Enterprise Security', 'Apex Optimization', 'Multi-Org Strategy', 'Integration Patterns']
-    },
-    {
-      id: 2,
-      role: 'Tech Lead / Senior Developer',
-      company: 'ORS Building Consultants (Ireland)',
-      duration: '2021 - 2023',
-      location: 'Dublin, Ireland (Remote)',
-      color: 'cyan',
-      summary: 'Dẫn dắt kỹ thuật phát triển các giải pháp tài chính và tự động hóa vận hành chuyên sâu trong hệ sinh thái Salesforce.',
-      bullets: [
-        'Thiết kế và phát triển phân hệ **Dự báo Tài chính Phức tạp (Financial Forecasting Module)** bằng LWC, cho phép tự động tính toán dòng tiền đa chiều theo thời gian thực.',
-        'Xây dựng hệ thống **Tự động Import & Xử lý Hóa đơn (Invoice Processing Engine)** bằng Apex và LWC, giảm 80% thao tác thủ công của kế toán viên.',
-        'Tối ưu hóa tốc độ tải trang Salesforce Lightning Record Pages từ 6.5 giây xuống dưới 2.2 giây nhờ cấu hình component thông minh.',
-        'Đào tạo và dẫn dắt đội ngũ 4 lập trình viên triển khai thành công hệ thống đúng tiến độ.'
-      ],
-      skills: ['Tech Lead', 'Lightning Web Components (LWC)', 'Financial Forecasting', 'Process Automation', 'Performance Tuning']
-    },
-    {
-      id: 3,
-      role: 'Fullstack Developer',
-      company: 'Animate Project (Japan)',
-      duration: '2020 - 2021',
-      location: 'Tokyo, Nhật Bản (Remote)',
-      color: 'pink',
-      summary: 'Phát triển các tính năng Fullstack phức tạp và xây dựng hạ tầng lưu trữ kết hợp Salesforce - AWS Cloud.',
-      bullets: [
-        'Xây dựng tính năng quản lý phân cấp **Cây Phòng Ban (Department Tree)** chuyên sâu bằng React và LWC hỗ trợ thao tác kéo thả động.',
-        'Phát triển bộ soạn thảo **Custom Email Editor** mạnh mẽ, cho phép kéo thả template HTML phức tạp trực tiếp trên Salesforce Cloud.',
-        'Tích hợp hạ tầng lưu trữ **AWS S3** bảo mật cao bằng kỹ thuật tự ký request sử dụng **AWS Signature Version 4** trực tiếp từ Apex Apex callouts.',
-        'Viết các dịch vụ serverless trên AWS Lambda và lưu trữ dữ liệu phi cấu trúc trên DynamoDB.'
-      ],
-      skills: ['Ruby on Rails', 'AWS S3 Integration', 'AWS Signature v4', 'AWS Lambda', 'DynamoDB', 'Drag & Drop Editors']
-    }
-  ];
+  // Tiêu thụ ngôn ngữ hiện tại và bộ dịch thuật từ Context
+  const { language, translations } = useLanguage();
+  const t = translations && translations[language] ? translations[language] : {};
 
+  // Lấy mảng danh sách kinh nghiệm chính xác từ Context (expList)
+  const experiences = t.expList || [];
+  
   const activeExp = experiences.find(e => e.id === selectedExpId) || experiences[0];
+
+  // Hàm helper xử lý chuỗi chữ đậm dạng **text** trong bullets nếu có
+  const renderTextWithBold = (text) => {
+    if (!text) return '';
+    return text.split('**').map((chunk, chunkIdx) => 
+      chunkIdx % 2 === 1 
+        ? <strong key={chunkIdx} className="text-white font-semibold">{chunk}</strong>
+        : chunk
+    );
+  };
 
   return (
     <motion.div
@@ -66,12 +33,14 @@ const Experience = () => {
       transition={{ duration: 0.6 }}
       className="space-y-12 py-8 md:py-16 text-left"
     >
-      {/* Title */}
+      {/* Dynamic Title */}
       <div className="text-left">
         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-display">
-          Kinh Nghiệm Làm Việc & Dự Án
+          {t.expTitle || 'Work Experience & Projects'}
         </h2>
-        <p className="text-gray-400 mt-1 text-sm sm:text-base">Click vào từng cột mốc để xem chi tiết các giải pháp kỹ thuật cụ thể đã triển khai.</p>
+        <p className="text-gray-400 mt-1 text-sm sm:text-base">
+          {t.expSubtitle || 'Click on each milestone to view deep technical solutions and contributions.'}
+        </p>
         <div className="h-1 w-20 bg-gradient-to-r from-cyber-cyan to-nebula-purple mt-2 rounded-full" />
       </div>
 
@@ -86,12 +55,6 @@ const Experience = () => {
                 : exp.color === 'cyan' ? 'border-cyber-cyan shadow-[0_0_15px_rgba(0,242,254,0.2)]'
                 : 'border-neon-pink shadow-[0_0_15px_rgba(236,72,153,0.2)]'
               : 'border-white/5';
-
-            const activeText = isSelected 
-              ? exp.color === 'purple' ? 'text-nebula-purple'
-                : exp.color === 'cyan' ? 'text-cyber-cyan'
-                : 'text-neon-pink'
-              : 'text-gray-400';
 
             return (
               <div
@@ -118,7 +81,7 @@ const Experience = () => {
                         : exp.color === 'cyan' ? 'bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30'
                         : 'bg-neon-pink/10 text-neon-pink border border-neon-pink/30'
                     }`}>
-                      {exp.location.split(' ')[0]}
+                      {exp.location ? exp.location.split(' ')[0] : 'Remote'}
                     </span>
                   </div>
                   
@@ -138,85 +101,89 @@ const Experience = () => {
         {/* Right Column: Dynamic Deep Details Display Card (2/3 width) */}
         <div className="lg:col-span-7 h-full">
           <AnimatePresence mode="wait">
-            <motion.div
-              key={activeExp.id}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.4 }}
-              className="h-full"
-            >
-              <GlowCard 
-                glowColor={activeExp.color} 
-                className="h-full border border-white/10 flex flex-col justify-between"
+            {activeExp && (
+              <motion.div
+                key={activeExp.id}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.4 }}
+                className="h-full"
               >
-                <div className="space-y-6">
-                  {/* Title & Info */}
-                  <div className="border-b border-white/5 pb-4 space-y-2">
-                    <h3 className="text-xl sm:text-2xl font-extrabold text-white">
-                      {activeExp.role}
-                    </h3>
-                    <div className="flex flex-wrap items-center gap-y-1 gap-x-4 text-xs font-semibold text-gray-400">
-                      <span className="flex items-center gap-1 text-cyber-cyan">
-                        <Building2 size={14} /> {activeExp.company}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <MapPin size={14} /> {activeExp.location}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Calendar size={14} /> {activeExp.duration}
-                      </span>
+                <GlowCard 
+                  glowColor={activeExp.color} 
+                  className="h-full border border-white/10 flex flex-col justify-between"
+                >
+                  <div className="space-y-6">
+                    {/* Title & Info */}
+                    <div className="border-b border-white/5 pb-4 space-y-2">
+                      <h3 className="text-xl sm:text-2xl font-extrabold text-white">
+                        {activeExp.role}
+                      </h3>
+                      <div className="flex flex-wrap items-center gap-y-1 gap-x-4 text-xs font-semibold text-gray-400">
+                        <span className="flex items-center gap-1 text-cyber-cyan">
+                          <Building2 size={14} /> {activeExp.company}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <MapPin size={14} /> {activeExp.location}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Calendar size={14} /> {activeExp.duration}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Summary paragraph */}
+                    <p className="text-gray-300 text-sm leading-relaxed font-medium">
+                      {activeExp.summary}
+                    </p>
+
+                    {/* Key Contributions & Solutions */}
+                    <div className="space-y-3">
+                      <h4 className="text-sm font-bold tracking-wider text-white uppercase font-display flex items-center gap-1.5">
+                        <Award size={16} className="text-cyber-cyan" /> {t.expSolutionsTitle || 'Key Solutions & Contributions:'}
+                      </h4>
+                      <ul className="space-y-2.5">
+                        {activeExp.bullets && activeExp.bullets.map((bullet, idx) => (
+                          <motion.li 
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: idx * 0.1 }}
+                            key={idx} 
+                            className="flex items-start gap-2.5 text-gray-400 text-sm leading-relaxed"
+                          >
+                            <CheckCircle2 size={16} className={`shrink-0 mt-0.5 ${
+                              activeExp.color === 'purple' ? 'text-nebula-purple'
+                                : activeExp.color === 'cyan' ? 'text-cyber-cyan'
+                                : 'text-neon-pink'
+                            }`} />
+                            <span>{renderTextWithBold(bullet)}</span>
+                          </motion.li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
 
-                  {/* Summary paragraph */}
-                  <p className="text-gray-300 text-sm leading-relaxed font-medium">
-                    {activeExp.summary}
-                  </p>
-
-                  {/* Key Contributions & Solutions */}
-                  <div className="space-y-3">
-                    <h4 className="text-sm font-bold tracking-wider text-white uppercase font-display flex items-center gap-1.5">
-                      <Award size={16} className="text-cyber-cyan" /> Giải Pháp & Đóng Góp Chính:
+                  {/* Applied Technologies Tech Badges */}
+                  <div className="mt-8 pt-4 border-t border-white/5">
+                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                      {t.expTechLabel || 'Applied Technologies:'}
                     </h4>
-                    <ul className="space-y-2.5">
-                      {activeExp.bullets.map((bullet, idx) => (
-                        <motion.li 
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: idx * 0.1 }}
-                          key={idx} 
-                          className="flex items-start gap-2.5 text-gray-400 text-sm leading-relaxed"
+                    <div className="flex flex-wrap gap-1.5">
+                      {activeExp.skills && activeExp.skills.map((skill, idx) => (
+                        <span
+                          key={idx}
+                          className="text-xs font-semibold font-mono px-2.5 py-1 rounded bg-white/5 border border-white/5 text-gray-300 hover:border-cyber-cyan/30 hover:text-cyber-cyan transition-colors duration-300"
                         >
-                          <CheckCircle2 size={16} className={`shrink-0 mt-0.5 ${
-                            activeExp.color === 'purple' ? 'text-nebula-purple'
-                              : activeExp.color === 'cyan' ? 'text-cyber-cyan'
-                              : 'text-neon-pink'
-                          }`} />
-                          <span>{bullet}</span>
-                        </motion.li>
+                          {skill}
+                        </span>
                       ))}
-                    </ul>
+                    </div>
                   </div>
-                </div>
 
-                {/* Tech Badges */}
-                <div className="mt-8 pt-4 border-t border-white/5">
-                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Công nghệ áp dụng:</h4>
-                  <div className="flex flex-wrap gap-1.5">
-                    {activeExp.skills.map((skill, idx) => (
-                      <span
-                        key={idx}
-                        className="text-xs font-semibold font-mono px-2.5 py-1 rounded bg-white/5 border border-white/5 text-gray-300 hover:border-cyber-cyan/30 hover:text-cyber-cyan transition-colors duration-300"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-              </GlowCard>
-            </motion.div>
+                </GlowCard>
+              </motion.div>
+            )}
           </AnimatePresence>
         </div>
 

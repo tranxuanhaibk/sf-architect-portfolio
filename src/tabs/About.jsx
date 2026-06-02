@@ -3,8 +3,13 @@ import { motion } from 'framer-motion';
 import { Award, Code2, Cloud, ArrowUpRight, Cpu } from 'lucide-react';
 import GlowCard from '../components/GlowCard';
 import AnimatedCounter from '../components/AnimatedCounter';
+import { useLanguage } from '../context/LanguageContext'; // 1. Import Hook ngôn ngữ
 
 const About = ({ setActiveTab }) => {
+  // 2. Lấy ngôn ngữ và bộ từ điển dịch thuật từ Context
+  const { language, translations } = useLanguage();
+  const t = translations && translations[language] ? translations[language] : {};
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -54,28 +59,29 @@ const About = ({ setActiveTab }) => {
         <div className="lg:col-span-7 space-y-6 text-left">
           
           <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyber-cyan/10 border border-cyber-cyan/30 text-cyber-cyan text-xs font-semibold uppercase tracking-wider shadow-[0_0_15px_rgba(0,242,254,0.1)]">
-            <Cpu size={14} /> Fullstack Salesforce Architect
+            <Cpu size={14} /> {t.heroBadge || 'Fullstack Salesforce Architect'}
           </motion.div>
 
           <motion.h1 
             variants={itemVariants} 
             className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight"
           >
-            Tôi là <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-nebula-purple font-display text-glow-cyan">Trần Xuân Hải</span>
+            {t.heroGreeting || 'Tôi là'} <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-nebula-purple font-display text-glow-cyan">Trần Xuân Hải</span>
           </motion.h1>
 
           <motion.p 
             variants={itemVariants} 
             className="text-xl sm:text-2xl font-semibold text-gray-200 border-l-4 border-nebula-purple pl-4 italic"
           >
-            "Architecting Scalable Salesforce Ecosystems. Bridging Code and Cloud Architecture."
+            "{t.heroTagline || 'Architecting Scalable Salesforce Ecosystems. Bridging Code and Cloud Architecture.'}"
           </motion.p>
 
           <motion.p 
             variants={itemVariants} 
             className="text-gray-400 text-base sm:text-lg leading-relaxed max-w-2xl"
           >
-            Với **6 năm kinh nghiệm thực chiến**, tôi chuyên tư vấn kiến trúc, triển khai hệ thống Salesforce toàn diện và tích hợp điện toán đám mây Cloud. Tôi kết hợp nhuần nhuyễn giữa tư duy **Kiến trúc dữ liệu (Data Architect)** và năng lực **Lập trình chuyên sâu (Apex, LWC, AWS Integrations)** để xây dựng các giải pháp có khả năng mở rộng vượt trội cho các đối tác quốc tế.
+            {/* Sử dụng chuỗi động từ context dịch thuật */}
+            {t.heroBio}
           </motion.p>
 
           {/* Action buttons */}
@@ -84,13 +90,13 @@ const About = ({ setActiveTab }) => {
               onClick={() => setActiveTab('experience')}
               className="px-6 py-3 rounded-full bg-gradient-to-r from-cyber-cyan to-cyber-blue text-space-black font-semibold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(0,242,254,0.3)] hover:shadow-[0_0_30px_rgba(0,242,254,0.5)] cursor-pointer flex items-center gap-1.5"
             >
-              Xem Kinh Nghiệm <ArrowUpRight size={16} />
+              {t.btnViewExp || 'Xem Kinh Nghiệm'} <ArrowUpRight size={16} />
             </button>
             <a
-              href="mailto:tranxuanhai@outlook.com"
+              href="mailto:tranxuanhai.bkdn@gmail.com"
               className="px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:border-nebula-purple/50 text-white font-semibold text-sm hover:bg-white/10 transition-all duration-300 flex items-center gap-2 shadow-inner"
             >
-              Liên Hệ Trực Tiếp
+              {t.btnContactDirect || 'Liên Hệ Trực Tiếp'}
             </a>
           </motion.div>
         </div>
@@ -160,7 +166,9 @@ const About = ({ setActiveTab }) => {
           <h3 className="text-4xl md:text-5xl font-display font-extrabold text-white text-glow-purple">
             <AnimatedCounter end={6} suffix="+" />
           </h3>
-          <p className="text-gray-400 mt-2 text-sm font-semibold tracking-wide uppercase">Năm Kinh Nghiệm Thực Chiến</p>
+          <p className="text-gray-400 mt-2 text-sm font-semibold tracking-wide uppercase">
+            {t.statsExp || 'Năm Kinh Nghiệm Thực Chiến'}
+          </p>
         </GlowCard>
 
         <GlowCard glowColor="cyan" delay={0.3} className="flex flex-col items-center justify-center text-center p-8 border border-white/5">
@@ -168,7 +176,9 @@ const About = ({ setActiveTab }) => {
           <h3 className="text-4xl md:text-5xl font-display font-extrabold text-white text-glow-cyan">
             <AnimatedCounter end={4} suffix="+" />
           </h3>
-          <p className="text-gray-400 mt-2 text-sm font-semibold tracking-wide uppercase">Chứng Chỉ Salesforce Cao Cấp</p>
+          <p className="text-gray-400 mt-2 text-sm font-semibold tracking-wide uppercase">
+            {t.statsCerts || 'Chứng Chỉ Salesforce Cao Cấp'}
+          </p>
         </GlowCard>
 
         <GlowCard glowColor="pink" delay={0.4} className="flex flex-col items-center justify-center text-center p-8 border border-white/5">
@@ -176,7 +186,9 @@ const About = ({ setActiveTab }) => {
           <h3 className="text-4xl md:text-5xl font-display font-extrabold text-white">
             <AnimatedCounter end={10} suffix="+" />
           </h3>
-          <p className="text-gray-400 mt-2 text-sm font-semibold tracking-wide uppercase">Dự Án Toàn Cầu (Ireland, Japan, Asia)</p>
+          <p className="text-gray-400 mt-2 text-sm font-semibold tracking-wide uppercase">
+            {t.statsProjects || 'Dự Án Toàn Cầu (Ireland, Japan, Asia)'}
+          </p>
         </GlowCard>
       </section>
 
@@ -184,20 +196,23 @@ const About = ({ setActiveTab }) => {
       <section className="space-y-6">
         <div className="text-left">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-display">
-            Năng Lực Thiết Kế & Phát Triển
+            {t.capabilitiesTitle || 'Năng Lực Thiết Kế & Phát Triển'}
           </h2>
           <div className="h-1 w-20 bg-gradient-to-r from-cyber-cyan to-nebula-purple mt-2 rounded-full" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
           
+          {/* Card 1: Salesforce Architecture */}
           <GlowCard glowColor="purple" delay={0.4} className="border border-white/5">
             <div className="w-10 h-10 rounded-lg bg-nebula-purple/10 flex items-center justify-center mb-4 text-nebula-purple">
               <Award size={20} />
             </div>
-            <h3 className="text-lg font-bold text-white mb-2 font-display">Salesforce Architecture</h3>
+            <h3 className="text-lg font-bold text-white mb-2 font-display">
+              {t.specArchTitle || 'Salesforce Architecture'}
+            </h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Tư vấn mô hình dữ liệu quy mô lớn (LDV), thiết kế cấu trúc bảo mật phân quyền nghiêm ngặt (Sharing Rules), và tối ưu hóa hệ thống tổng thể tránh hiện tượng Data Skew.
+              {t.specArchDesc}
             </p>
             <ul className="text-xs text-cyber-cyan font-mono mt-4 space-y-1">
               <li>• Large Data Volume (LDV) Design</li>
@@ -206,13 +221,16 @@ const About = ({ setActiveTab }) => {
             </ul>
           </GlowCard>
 
+          {/* Card 2: Deep System Coding */}
           <GlowCard glowColor="cyan" delay={0.5} className="border border-white/5">
             <div className="w-10 h-10 rounded-lg bg-cyber-cyan/10 flex items-center justify-center mb-4 text-cyber-cyan">
               <Code2 size={20} />
             </div>
-            <h3 className="text-lg font-bold text-white mb-2 font-display">Deep System Coding</h3>
+            <h3 className="text-lg font-bold text-white mb-2 font-display">
+              {t.specCodingTitle || 'Deep System Coding'}
+            </h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Phát triển logic nghiệp vụ tối ưu trong Apex Callouts, Trigger framework bền vững và các component giao diện tùy biến cực mạnh bằng LWC (Lightning Web Components).
+              {t.specCodingDesc}
             </p>
             <ul className="text-xs text-cyber-cyan font-mono mt-4 space-y-1">
               <li>• Apex Optimization & Async Processing</li>
@@ -221,13 +239,16 @@ const About = ({ setActiveTab }) => {
             </ul>
           </GlowCard>
 
+          {/* Card 3: Fullstack & AWS Integration */}
           <GlowCard glowColor="pink" delay={0.6} className="border border-white/5">
             <div className="w-10 h-10 rounded-lg bg-neon-pink/10 flex items-center justify-center mb-4 text-neon-pink">
               <Cloud size={20} />
             </div>
-            <h3 className="text-lg font-bold text-white mb-2 font-display">Fullstack & AWS Integration</h3>
+            <h3 className="text-lg font-bold text-white mb-2 font-display">
+              {t.specCloudTitle || 'Fullstack & AWS Integration'}
+            </h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Tích hợp hệ thống bên ngoài bảo mật cao, kết nối trực tiếp AWS (S3, Lambda, DynamoDB) sử dụng AWS Signature v4 và phát triển Ruby on Rails cho các chức năng dịch vụ mở rộng.
+              {t.specCloudDesc}
             </p>
             <ul className="text-xs text-cyber-cyan font-mono mt-4 space-y-1">
               <li>• AWS Signature Version 4 signing</li>
